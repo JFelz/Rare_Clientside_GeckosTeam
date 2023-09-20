@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getAllposts } from '../api/postData';
 import PostCard from '../components/PostCard';
+import PostForm from '../components/forms/PostForm';
 
 function PostPage() {
   const [posts, setPosts] = useState([]);
@@ -17,6 +18,7 @@ function PostPage() {
   return (
     <>
       {/* <AddProductForm /> */}
+      <PostForm />
       <div
         className="text-center d-flex flex-column justify-content-center align-content-center"
         style={{
