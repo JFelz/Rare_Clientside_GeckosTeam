@@ -33,7 +33,7 @@ function PostPage() {
       </div>
       <div className="d-flex justify-content-between">
         {posts?.map((post) => (
-          <PostCard postObj={post} />))}
+          <PostCard key={post.id} postObj={post} />))}
       </div>
     </>
   );
