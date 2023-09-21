@@ -26,7 +26,7 @@ export default function NavBar() {
             <Link passHref href="/posts">
               <Nav.Link>Posts</Nav.Link>
             </Link>
-            <Link passHref href="/delete-me">
+            <Link passHref href="/profile">
               <Nav.Link>My Profile</Nav.Link>
             </Link>
             <Button variant="danger" onClick={signOut}>
