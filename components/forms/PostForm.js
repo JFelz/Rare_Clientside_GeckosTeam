@@ -16,6 +16,7 @@ const initialState = {
   content: '',
   imageUrl: '',
   categoryId: 0,
+  isApproved: false,
 };
 
 export default function PostForm({ postObj }) {
@@ -70,7 +71,7 @@ export default function PostForm({ postObj }) {
       });
     } else {
       const payload = {
-        ...formInput, userId: checkUser?.[0]?.id, publicationDate: new Date(Date.now()), isApproved: false,
+        ...formInput, userId: checkUser?.[0]?.id, publicationDate: new Date(Date.now()),
       };
       createPost(payload).then(() => {
         router.push('/posts');
