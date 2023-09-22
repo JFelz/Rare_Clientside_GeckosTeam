@@ -18,8 +18,8 @@ const createCategory = (payload) => new Promise((resolve, reject) => {
     },
     body: JSON.stringify(payload),
   })
-    .then((resp) => resp.json())
-    .then(resolve)
+    .then((response) => response.json())
+    .then((data) => resolve(data))
     .catch(reject);
 });
 
@@ -58,17 +58,6 @@ const deleteCategory = (categoryId) => new Promise((resolve, reject) => {
       }
     }).catch(reject);
 });
-// const getSingleCategory = (categoryId) => new Promise((resolve, reject) => {
-//   fetch(`https://localhost:7284/rareserver/categories/${categoryId}`, {
-//     method: 'GET',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//   })
-//     .then((response) => response.json())
-//     .then((data) => resolve(data))
-//     .catch(reject);
-// });
 
 export {
   getAllCategories,
