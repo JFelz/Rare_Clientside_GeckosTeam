@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 import { Button, Image } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
+import UserPosts from '../components/UserPosts';
 
 export default function UserProfile() {
   const { user } = useAuth();
@@ -34,6 +35,7 @@ export default function UserProfile() {
         </div>
         <div className="profilePosts">
           <h1>My Posts</h1>
+          <UserPosts />
         </div>
       </div>
     </>
