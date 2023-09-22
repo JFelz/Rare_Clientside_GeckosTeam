@@ -20,11 +20,11 @@ function UserPosts() {
     findUser(user.uid).then((data) => setCheckUser(data));
   }, []);
 
-  console.log('these are posts:', posts);
-  console.log('checkuser for posts profile', checkUser);
+  // console.log('these are posts:', posts);
+  // console.log('checkuser for posts profile', checkUser);
 
   const userPosts = posts?.filter((index) => index?.userId === checkUser?.[0]?.id);
-  console.log('these are user posts', userPosts);
+  // console.log('these are user posts', userPosts);
 
   return (
 

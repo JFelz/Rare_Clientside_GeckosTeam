@@ -27,8 +27,8 @@ export default function PostForm({ postObj }) {
   const router = useRouter();
   const { user } = useAuth();
 
-  console.log('this is the user obj', user);
-  console.log('test check on postObj', postObj);
+  // console.log('this is the user obj', user);
+  // console.log('test check on postObj', postObj);
 
   useEffect(() => {
     if (postObj.id) setFormInput(postObj);
@@ -43,8 +43,8 @@ export default function PostForm({ postObj }) {
   }, []);
 
   // console.log('these are the categories:', categories);
-  console.log('this is the checkUser:', checkUser);
-  console.log('this is the checkUserID:', checkUser?.[0]?.id);
+  // console.log('this is the checkUser:', checkUser);
+  // console.log('this is the checkUserID:', checkUser?.[0]?.id);
 
   const handleClose = () => {
     setShow(false);
