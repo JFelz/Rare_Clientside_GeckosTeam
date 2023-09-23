@@ -26,6 +26,9 @@ export default function NavBar() {
             <Link passHref href="/posts">
               <Nav.Link>Posts</Nav.Link>
             </Link>
+            <Link passHref href="/categories">
+              <Nav.Link>Category Manager</Nav.Link>
+            </Link>
             <Link passHref href="/profile">
               <Nav.Link>My Profile</Nav.Link>
             </Link>
