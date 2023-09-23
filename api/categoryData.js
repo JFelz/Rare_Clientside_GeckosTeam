@@ -61,6 +61,22 @@ const deleteCategory = (categoryId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const SubscribeToNewUser = (followerId, userId) => new Promise((resolve, reject) => {
+  fetch(`https://localhost:7284/rareserver/categories/${followerId}/${userId}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      followerId,
+      userId,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 export {
   getAllCategories,
   getSingleCategory,
