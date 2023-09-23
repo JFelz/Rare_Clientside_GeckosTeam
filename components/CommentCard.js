@@ -6,13 +6,13 @@ import { deleteSingleComment } from '../api/commentData';
 // import Link from 'next/link';
 // import { useAuth } from '../utils/context/authContext';
 
-function CommentCard({ commentObj, onUpdate }) {
+function CommentCard({ commentObj }) {
   // const { user } = useAuth();
   // FOR DELETE, WE NEED TO REMOVE THE BOOK AND HAVE THE VIEW RERENDER,
   // SO WE PASS THE FUNCTION FROM THE PARENT THAT GETS THE BOOKS
   const deleteThisComment = () => {
     if (window.confirm(`Delete ${commentObj.content}?`)) {
-      deleteSingleComment(commentObj.Id).then(() => onUpdate());
+      deleteSingleComment(commentObj.id).then(() => console.log(commentObj));
     }
   };
 
@@ -31,9 +31,8 @@ function CommentCard({ commentObj, onUpdate }) {
 CommentCard.propTypes = {
   commentObj: PropTypes.shape({
     content: PropTypes.string,
-    Id: PropTypes.number,
+    id: PropTypes.number,
   }).isRequired,
-  onUpdate: PropTypes.func.isRequired,
 };
 
 export default CommentCard;

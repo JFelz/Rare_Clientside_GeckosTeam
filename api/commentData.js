@@ -29,7 +29,6 @@ const deleteSingleComment = (commentId) => new Promise((resolve, reject) => {
       'Content-Type': 'application/json',
     },
   })
-    .then((response) => response.json())
     .then((data) => resolve(data))
     .catch(reject);
 });
@@ -60,10 +59,23 @@ const updateComment = (commentId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getPostsComments = (postId) => new Promise((resolve, reject) => {
+  fetch(`https://localhost:7284/api/Comments/${postId}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    // .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
+
 export {
   getAllComments,
   getSingleComment,
   deleteSingleComment,
   postComment,
   updateComment,
+  getPostsComments,
 };
