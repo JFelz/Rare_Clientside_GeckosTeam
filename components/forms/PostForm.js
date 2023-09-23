@@ -16,7 +16,9 @@ const initialState = {
   content: '',
   imageUrl: '',
   categoryId: 0,
+  isApproved: false,
 };
+
 export default function PostForm({ postObj }) {
   const [show, setShow] = useState(false);
   const [categories, setCategories] = useState([]);
@@ -25,8 +27,8 @@ export default function PostForm({ postObj }) {
   const router = useRouter();
   const { user } = useAuth();
 
-  console.log('this is the user obj', user);
-  console.log('test check on postObj', postObj);
+  // console.log('this is the user obj', user);
+  // console.log('test check on postObj', postObj);
 
   useEffect(() => {
     if (postObj.id) setFormInput(postObj);
@@ -38,11 +40,11 @@ export default function PostForm({ postObj }) {
 
   useEffect(() => {
     findUser(user.uid).then((data) => setCheckUser(data));
-  }, [user]);
+  }, []);
 
-  console.log('these are the categories:', categories);
-  console.log('this is the checkUser:', checkUser);
-  // console.log('this is the checkUserID:', checkUser?.[0].id);
+  // console.log('these are the categories:', categories);
+  // console.log('this is the checkUser:', checkUser);
+  // console.log('this is the checkUserID:', checkUser?.[0]?.id);
 
   const handleClose = () => {
     setShow(false);
@@ -69,7 +71,7 @@ export default function PostForm({ postObj }) {
       });
     } else {
       const payload = {
-        ...formInput, userId: 1, publicationDate: new Date(Date.now()),
+        ...formInput, userId: checkUser?.[0]?.id, publicationDate: new Date(Date.now()),
       };
       createPost(payload).then(() => {
         router.push('/posts');
@@ -163,7 +165,7 @@ PostForm.propTypes = {
   postObj: PropTypes.shape({
     title: PropTypes.string,
     content: PropTypes.string,
-    id: PropTypes.string,
+    id: PropTypes.number,
     imageUrl: PropTypes.string,
     publicationDate: PropTypes.string,
   }),

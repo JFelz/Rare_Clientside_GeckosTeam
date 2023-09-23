@@ -28,10 +28,14 @@ function PostCard({ postObj }) {
     }
   };
 
+  const viewPostDetails = () => {
+    console.log('Navigating to post details for post ID:', singlePost.id);
+    router.push(`/${singlePost.id}`);
+  };
+
   console.log('this is the post obj:', postObj);
   console.log('this is the single post:', singlePost);
   return (
-
     <>
       <div>
         <Card style={{ width: '18rem' }}>
@@ -41,17 +45,16 @@ function PostCard({ postObj }) {
           <Card.Text>
             {singlePost?.content}
           </Card.Text>
+          <Button variant="primary" onClick={viewPostDetails}>
+            View Details
+          </Button>
           <div className="Reactions">
             {reactObj?.map((rObj) => (
               <ReactionCard Obj={rObj} postObj={postObj} />
             ))}
           </div>
-          <Button variant="primary">button1</Button>
           <Button variant="primary">button2</Button>
           <Button variant="danger" onClick={deletePost}>Delete</Button>
-          <div>
-            {/* This section is to call the current reactions from the database. All the reactions will be displayed here. Make it a  */}
-          </div>
           <PostForm postObj={singlePost} />
 
         </Card>
