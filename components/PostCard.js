@@ -6,7 +6,6 @@ import { deleteSinglePost, getSinglePost } from '../api/postData';
 import PostForm from './forms/PostForm';
 
 function PostCard({ postObj }) {
-  // const { user } = useAuth();
   const router = useRouter();
   const [singlePost, setSinglePost] = useState();
 
@@ -27,22 +26,23 @@ function PostCard({ postObj }) {
 
   console.log('this is the post obj:', postObj);
   console.log('this is the single post:', singlePost);
+
   return (
-
     <Card style={{ width: '18rem' }}>
-
-      <Card.Title>{singlePost?.category.label}</Card.Title>
-      <Card.Title>{singlePost?.title}</Card.Title>
+      <Card.Title>{singlePost?.post?.category?.label}</Card.Title>
+      <Card.Title>{singlePost?.post?.title}</Card.Title>
+      <Card.Text>{singlePost?.post?.content}</Card.Text>
       <Card.Text>
-        {singlePost?.content}
+        <strong>Tags:</strong> {singlePost?.tags?.[0]?.label}
       </Card.Text>
       <Button variant="primary" onClick={viewPostDetails}>
         View Details
       </Button>
       <Button variant="primary">button2</Button>
-      <Button variant="danger" onClick={deletePost}>Delete</Button>
+      <Button variant="danger" onClick={deletePost}>
+        Delete
+      </Button>
       <PostForm postObj={singlePost} />
-
     </Card>
   );
 }
