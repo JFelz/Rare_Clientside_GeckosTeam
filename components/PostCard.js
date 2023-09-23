@@ -23,18 +23,17 @@ function PostCard({ postObj }) {
 
   const deletePost = () => {
     if (window.confirm('Delete this Post?')) {
-      deleteSinglePost(singlePost.id).then(() => router.push('/posts'));
+      deleteSinglePost(singlePost?.post?.id).then(() => router.push('/posts'));
     }
   };
 
   const viewPostDetails = () => {
-    console.log('Navigating to post details for post ID:', singlePost.id);
-    router.push(`/${singlePost.id}`);
+    console.log('Navigating to post details for post ID:', singlePost?.post?.id);
+    router.push(`/${singlePost?.post?.id}`);
   };
 
   console.log('this is the post obj:', postObj);
   console.log('this is the single post:', singlePost);
-
 
   return (
     <Card style={{ width: '18rem' }}>
@@ -47,11 +46,11 @@ function PostCard({ postObj }) {
       <Button variant="primary" onClick={viewPostDetails}>
         View Details
       </Button>
-          <div className="Reactions">
-            {reactObj?.map((rObj) => (
-              <ReactionCard Obj={rObj} postObj={postObj} />
-            ))}
-          </div>
+      <div className="Reactions">
+        {reactObj?.map((rObj) => (
+          <ReactionCard key={rObj.id} Obj={rObj} postObj={postObj} />
+        ))}
+      </div>
       <Button variant="primary">button2</Button>
       <Button variant="danger" onClick={deletePost}>
         Delete
