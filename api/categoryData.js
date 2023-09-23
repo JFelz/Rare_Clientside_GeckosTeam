@@ -10,6 +10,18 @@ const getAllCategories = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getSingleCategory = (categoryId) => new Promise((resolve, reject) => {
+  fetch(`https://localhost:7284/rareserver/categories/${categoryId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 const createCategory = (payload) => new Promise((resolve, reject) => {
   fetch('https://localhost:7284/rareserver/categories/', {
     method: 'POST',
@@ -23,26 +35,21 @@ const createCategory = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const updateCategory = (categoryId) => new Promise((resolve, reject) => {
-  fetch('https://localhost:7284/rareserver/categories/{categoryId}', {
-    method: 'PATCH',
+const updateCategory = (payload) => new Promise((resolve, reject) => {
+  fetch(`https://localhost:7284/rareserver/categories/${payload.id}`, {
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(categoryId),
+    body: JSON.stringify(payload),
   })
     .then((response) => response.json())
-    .then((data) => {
-      if (data) {
-        resolve(Object.values(data));
-      } else {
-        resolve([]);
-      }
-    }).catch(reject);
+    .then((data) => resolve(data))
+    .catch(reject);
 });
 
 const deleteCategory = (categoryId) => new Promise((resolve, reject) => {
-  fetch('https://localhost:7284/rareserver/categories/{categoryId}', {
+  fetch(`https://localhost:7284/rareserver/categories/${categoryId}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -50,17 +57,13 @@ const deleteCategory = (categoryId) => new Promise((resolve, reject) => {
     body: JSON.stringify(categoryId),
   })
     .then((response) => response.json())
-    .then((data) => {
-      if (data) {
-        resolve(Object.values(data));
-      } else {
-        resolve([]);
-      }
-    }).catch(reject);
+    .then((data) => resolve(data))
+    .catch(reject);
 });
 
 export {
   getAllCategories,
+  getSingleCategory,
   createCategory,
   updateCategory,
   deleteCategory,

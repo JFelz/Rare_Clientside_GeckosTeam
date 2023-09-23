@@ -29,8 +29,6 @@ export default function CategoryForm({ categoryObj }) {
     findUser(user.uid).then((data) => setCheckUser(data));
   }, [user]);
 
-  console.log('this is the checkUser:', checkUser);
-
   const handleClose = () => {
     setShow(false);
     router.push('/categories');
@@ -55,7 +53,7 @@ export default function CategoryForm({ categoryObj }) {
         handleClose();
       });
     } else {
-      const payload = { ...formInput, userId: 1 };
+      const payload = { ...formInput, userId: checkUser?.[0].id };
       console.log('this is the payload', payload);
       createCategory(payload).then(() => {
         router.push('/categories');
@@ -87,7 +85,7 @@ export default function CategoryForm({ categoryObj }) {
               <Form.Control
                 type="text"
                 placeholder="Category Label"
-                name="Label"
+                name="label"
                 value={formInput.label}
                 onChange={handleChange}
                 required
