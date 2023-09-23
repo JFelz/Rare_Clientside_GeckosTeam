@@ -1,3 +1,4 @@
+// eslint-disable-next-line react-hooks/exhaustive-deps
 import { useEffect, useState } from 'react';
 import { getAllposts } from '../api/postData';
 import PostCard from '../components/PostCard';

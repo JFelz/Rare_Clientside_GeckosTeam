@@ -5,8 +5,6 @@ import { useEffect, useState } from 'react';
 import PostDetailsCard from '../components/PostDetailsCard';
 import CommentCard from '../components/CommentCard';
 import { getPostsComments } from '../api/commentData';
-// import CommentForm from '../components/forms/CommentForm';
-// import { postComment } from '../api/commentData';
 
 function DetailsPage() {
   const router = useRouter();
@@ -19,16 +17,6 @@ function DetailsPage() {
     getPostsComments(id).then(setComments);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  /* const handleAnswerSubmit = (comment) => {
-    postComment(id, comment)
-      .then((data) => {
-        setComments([...comments, data]);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-  }; */
 
   return (
     <div>
