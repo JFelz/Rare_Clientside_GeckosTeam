@@ -8,7 +8,6 @@ import { getAllreactions } from '../api/reactionData';
 import ReactionCard from './reactionCard';
 
 function PostCard({ postObj }) {
-  // const { user } = useAuth();
   const router = useRouter();
   const [singlePost, setSinglePost] = useState();
   const [reactObj, setReactObj] = useState([]);
@@ -28,35 +27,37 @@ function PostCard({ postObj }) {
     }
   };
 
+  const viewPostDetails = () => {
+    console.log('Navigating to post details for post ID:', singlePost.id);
+    router.push(`/${singlePost.id}`);
+  };
+
   console.log('this is the post obj:', postObj);
   console.log('this is the single post:', singlePost);
+
+
   return (
-
-    <>
-      <div>
-        <Card style={{ width: '18rem' }}>
-
-          <Card.Title>{singlePost?.category.label}</Card.Title>
-          <Card.Title>{singlePost?.title}</Card.Title>
-          <Card.Text>
-            {singlePost?.content}
-          </Card.Text>
+    <Card style={{ width: '18rem' }}>
+      <Card.Title>{singlePost?.post?.category?.label}</Card.Title>
+      <Card.Title>{singlePost?.post?.title}</Card.Title>
+      <Card.Text>{singlePost?.post?.content}</Card.Text>
+      <Card.Text>
+        <strong>Tags:</strong> {singlePost?.tags?.[0]?.label}
+      </Card.Text>
+      <Button variant="primary" onClick={viewPostDetails}>
+        View Details
+      </Button>
           <div className="Reactions">
             {reactObj?.map((rObj) => (
               <ReactionCard Obj={rObj} postObj={postObj} />
             ))}
           </div>
-          <Button variant="primary">button1</Button>
-          <Button variant="primary">button2</Button>
-          <Button variant="danger" onClick={deletePost}>Delete</Button>
-          <div>
-            {/* This section is to call the current reactions from the database. All the reactions will be displayed here. Make it a  */}
-          </div>
-          <PostForm postObj={singlePost} />
-
-        </Card>
-      </div>
-    </>
+      <Button variant="primary">button2</Button>
+      <Button variant="danger" onClick={deletePost}>
+        Delete
+      </Button>
+      <PostForm postObj={singlePost} />
+    </Card>
   );
 }
 
