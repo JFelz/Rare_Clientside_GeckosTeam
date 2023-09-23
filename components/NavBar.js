@@ -23,6 +23,9 @@ export default function NavBar() {
             <Link passHref href="/">
               <Nav.Link>Home</Nav.Link>
             </Link>
+            <Link passHref href="/comment">
+              <Nav.Link>All Comments</Nav.Link>
+            </Link>
             <Link passHref href="/posts">
               <Nav.Link>Posts</Nav.Link>
             </Link>
