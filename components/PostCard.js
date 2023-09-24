@@ -29,17 +29,17 @@ function PostCard({ postObj }) {
 
   const viewPostDetails = () => {
     console.log('Navigating to post details for post ID:', singlePost?.post?.id);
-    router.push(`/${singlePost?.post?.id}`);
+    router.push(`/${singlePost?.id}`);
   };
 
-  console.log('this is the post obj:', postObj);
+  // console.log('this is the post obj:', postObj);
   console.log('this is the single post:', singlePost);
 
   return (
     <Card style={{ width: '18rem' }}>
-      <Card.Title>{singlePost?.post?.category?.label}</Card.Title>
-      <Card.Title>{singlePost?.post?.title}</Card.Title>
-      <Card.Text>{singlePost?.post?.content}</Card.Text>
+      <Card.Title>{singlePost?.category?.label}</Card.Title>
+      <Card.Title>{singlePost?.title}</Card.Title>
+      <Card.Text>{singlePost?.content}</Card.Text>
       <Card.Text>
         <strong>Tags:</strong> {singlePost?.tags?.[0]?.label}
       </Card.Text>
