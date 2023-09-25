@@ -68,3 +68,20 @@ body {
   border-radius: 5%;
   background-color: aliceblue;
 }
+
+
+.Button1 {
+  color: black;
+  width: 4em;
+  height: 4em;
+  border-radius: 100%;
+  margin: 2px;
+}
+
+
+.Reactions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
