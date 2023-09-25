@@ -35,7 +35,6 @@ function PostCard({ postObj }) {
   console.log('this is the post obj:', postObj);
   console.log('this is the single post:', singlePost);
 
-
   return (
     <Card style={{ width: '18rem' }}>
       <Card.Title>{singlePost?.post?.category?.label}</Card.Title>
@@ -47,11 +46,11 @@ function PostCard({ postObj }) {
       <Button variant="primary" onClick={viewPostDetails}>
         View Details
       </Button>
-          <div className="Reactions">
-            {reactObj?.map((rObj) => (
-              <ReactionCard Obj={rObj} postObj={postObj} />
-            ))}
-          </div>
+      <div className="Reactions">
+        {reactObj?.map((rObj) => (
+          <ReactionCard Obj={rObj} postObj={postObj} />
+        ))}
+      </div>
       <Button variant="primary">button2</Button>
       <Button variant="danger" onClick={deletePost}>
         Delete
