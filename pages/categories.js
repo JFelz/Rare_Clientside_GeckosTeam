@@ -22,16 +22,17 @@ export default function CategoriesPage() {
         style={{
           height: '22vh',
           padding: '7px',
-          maxWidth: '100px',
-          margin: '0 auto',
         }}
       >
         <h1>Categories!</h1>
 
       </div>
-      <div className="d-flex justify-content-between">
+      <div className="d-flex flex-row justify-content-center">
         {categories?.map((category) => (
-          <CategoryCard key={category.id} categoryObj={category} />))}
+          <div key={category.id} style={{ marginRight: '10px' }}>
+            <CategoryCard categoryObj={category} />
+          </div>
+        ))}
       </div>
     </>
   );

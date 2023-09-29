@@ -41,11 +41,11 @@ export default function ReactionCard({ Obj, postObj }) {
   const handleSubmit = () => {
     if (Obj.id) {
       postReaction(payload);
-      console.log('Post Id:', singlePost, 'React Id:', singleReact, 'User uid:', user.uid);
+      // console.log('Post Id:', singlePost, 'React Id:', singleReact, 'User uid:', user.uid);
     }
   };
 
-  console.log('This is the singleReact:', singleReact);
+  // console.log('This is the singleReact:', singleReact);
 
   return (
     <>
