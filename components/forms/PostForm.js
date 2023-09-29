@@ -40,7 +40,7 @@ export default function PostForm({ postObj }) {
 
   useEffect(() => {
     findUser(user.uid).then((data) => setCheckUser(data));
-  }, []);
+  }, [user.uid]);
 
   // console.log('these are the categories:', categories);
   // console.log('this is the checkUser:', checkUser);
