@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
-import { postReaction } from '../api/reactionData';
 import { useAuth } from '../utils/context/authContext';
 // import { checkUser, registerUser } from '../utils/auth';
 
@@ -32,16 +31,16 @@ export default function ReactionCard({ Obj, postObj }) {
   // };
 
   // Line 35 - 47, is to submit into PostReaction table upon click.
-  const payload = {
-    PostId: singlePost,
-    ReactId: singleReact,
-    UserId: user.uid,
-  };
+  // const payload = {
+  //   PostId: singlePost,
+  //   ReactId: singleReact,
+  //   UserId: user.uid,
+  // };
 
   const handleSubmit = () => {
     if (Obj.id) {
-      postReaction(payload);
-      // console.log('Post Id:', singlePost, 'React Id:', singleReact, 'User uid:', user.uid);
+      // postReaction(payload);
+      console.log('Post Id:', singlePost, 'React Id:', singleReact, 'User uid:', user.uid);
     }
   };
 
