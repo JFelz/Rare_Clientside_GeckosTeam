@@ -9,6 +9,7 @@ import { useAuth } from '../../utils/context/authContext';
 import {
   allCategories, createPost, findUser, updatePost,
 } from '../../api/postData';
+import getAllTags from '../../api/tagData';
 
 const initialState = {
   title: '',
@@ -16,12 +17,14 @@ const initialState = {
   content: '',
   imageUrl: '',
   categoryId: 0,
+  tags: [{}],
   isApproved: false,
 };
 
 export default function PostForm({ postObj }) {
   const [show, setShow] = useState(false);
   const [categories, setCategories] = useState([]);
+  const [tagz, setTags] = useState([]);
   const [checkUser, setCheckUser] = useState([]);
   const [formInput, setFormInput] = useState(initialState);
   const router = useRouter();
@@ -39,12 +42,17 @@ export default function PostForm({ postObj }) {
   }, []);
 
   useEffect(() => {
+    getAllTags().then((data) => setTags(data));
+  }, []);
+
+  useEffect(() => {
     findUser(user.uid).then((data) => setCheckUser(data));
   }, [user.uid]);
 
   // console.log('these are the categories:', categories);
   // console.log('this is the checkUser:', checkUser);
   // console.log('this is the checkUserID:', checkUser?.[0]?.id);
+  console.log('all tags:', tagz);
 
   const handleClose = () => {
     setShow(false);
@@ -56,6 +64,17 @@ export default function PostForm({ postObj }) {
   const handleChange = (e) => {
     const { name, value } = e.target;
     const convertValue = name === 'categoryId' ? parseInt(value, 10) : value;
+    setFormInput((prevState) => ({
+      ...prevState,
+      [name]: convertValue,
+    }));
+  };
+
+  const handleTag = (e) => {
+    console.log('this is e:', e);
+    const { name, value } = e.target;
+    console.log('name and value', name, value);
+    const convertValue = [{ id: parseInt(value, 10) }];
     setFormInput((prevState) => ({
       ...prevState,
       [name]: convertValue,
@@ -124,6 +143,22 @@ export default function PostForm({ postObj }) {
                 <option> </option>
                 {categories.map((category) => (
                   <option key={category.id} value={category.id}>{category.label}</option>
+                ))}
+              </Form.Select>
+            </FloatingLabel>
+
+            {/* Tag Select  */}
+            <FloatingLabel controlId="floatingInput1" label="Tag" className="mb-3" style={{ color: 'red' }}>
+              <Form.Select
+                type="text"
+                placeholder="Select Tag"
+                name="tags"
+                value={formInput.tags}
+                onChange={handleTag}
+              >
+                <option> </option>
+                {tagz.map((tag) => (
+                  <option key={tag.id} value={tag.id}>{tag.label}</option>
                 ))}
               </Form.Select>
             </FloatingLabel>
