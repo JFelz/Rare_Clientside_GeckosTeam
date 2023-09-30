@@ -31,6 +31,9 @@ export default function NavBar() {
             <Link passHref href="/categories">
               <Nav.Link>Category Manager</Nav.Link>
             </Link>
+            <Link passHref href="/allusers">
+              <Nav.Link>Find Friends</Nav.Link>
+            </Link>
             <Button variant="primary" onClick={() => setShowCreateTagModal(true)}>
               Create Tag
             </Button>

@@ -6,7 +6,7 @@ import UserPosts from '../components/UserPosts';
 import { getSingleUser } from '../api/userData';
 
 export default function UserProfile() {
-  const [profileUser, setProfileUser] = useState();
+  const [userObj, setProfileUser] = useState();
   const { user } = useAuth();
 
   const getUser = () => {
@@ -15,30 +15,30 @@ export default function UserProfile() {
 
   useEffect(() => {
     getUser();
-  });
+  }, []);
 
   return (
     <>
       <div className="profileContainer">
-        <div className="profileUser">
+        <div className="userObj">
           <div style={{ padding: '20px' }}>
             <Image
-              src={profileUser?.profileImage}
+              src={userObj?.profileImage}
               className="profileImage"
             />
           </div>
           <div style={{ marginTop: '5px', marginBottom: '20px' }}>
-            <h1>{profileUser?.firstName} {profileUser?.lastName}</h1>
-            <p className="Staff_Description">{profileUser?.isStaff ? 'Active Staff Member' : ''}</p>
+            <h1>{userObj?.firstName} {userObj?.lastName}</h1>
+            <p className="Staff_Description">{userObj?.isStaff ? 'Active Staff Member' : ''}</p>
           </div>
           <div className="profileDetails">
             <h4 style={{ marginBottom: '20px' }}>Personal Details</h4>
             <h5>Email</h5>
-            <p>{profileUser?.email}</p>
+            <p>{userObj?.email}</p>
             <h5>About Me</h5>
-            <p>{profileUser?.bio}</p>
+            <p>{userObj?.bio}</p>
           </div>
-          {profileUser ? (
+          {userObj ? (
             <div>
               <Link href={`/User/edit/${user.uid}`} passHref>
                 <Button>Edit Profile</Button>
