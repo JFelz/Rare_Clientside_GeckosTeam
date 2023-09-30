@@ -5,28 +5,32 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import { postComment, updateComment } from '../../api/commentData';
-// import { findUser } from '../../api/postData';
+import { findUser } from '../../api/postData';
+import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
   content: '',
 };
 // this is a comment
-function CommentForm({ commentObj, postId, userId }) {
+function CommentForm({ commentObj, postId }) {
+  const [setShow] = useState(false);
   const [formInput, setFormInput] = useState(initialState);
   const router = useRouter();
-  // const [checkUser, setCheckUser] = useState([]);
-  // const { user } = useAuth();
+  const [checkUser, setCheckUser] = useState([]);
+  const { user } = useAuth();
 
   useEffect(() => {
     if (commentObj.id) setFormInput(commentObj);
   }, [commentObj]);
 
-  /* useEffect(() => {
+  useEffect(() => {
     findUser(user.uid).then((data) => setCheckUser(data));
-  }, []); */
+  }, []);
 
-  // console.log('this is the checkUser:', checkUser);
-  // console.log('this is the checkUserID:', checkUser?.[0]?.id);
+  const handleClose = () => {
+    setShow(false);
+    router.push('/comments');
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,26 +39,29 @@ function CommentForm({ commentObj, postId, userId }) {
       [name]: value,
     }));
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (commentObj.id) {
-      updateComment(formInput)
-        .then(() => router.push(`/comments/${commentObj.id}`));
+      updateComment(formInput).then(() => {
+        router.push('/comments');
+        handleClose();
+      });
     } else {
-      const payload2 = {
-        ...formInput,
-        Post: postId,
-        User: userId,
+      const payload = {
+        ...formInput, userId: checkUser?.[0]?.id, createdOn: new Date(Date.now()),
       };
-      postComment(payload2).then(({ name }) => {
-        const patchPayload = { id: name };
-        updateComment(patchPayload);
+      postComment(payload).then(() => {
+        router.push('/comments');
+        // onUpdate();
+        setShow(false);
+        setFormInput(initialState);
       });
     }
   };
+
   return (
     <Form onSubmit={handleSubmit}>
-      {/* Content INPUT  */}
       <FloatingLabel controlId="floatingInput1" label="Enter Comment" className="mb-3">
         <Form.Control
           type="text"
@@ -66,8 +73,7 @@ function CommentForm({ commentObj, postId, userId }) {
         />
       </FloatingLabel>
       <div>
-        {/* SUBMIT BUTTON  */}
-        <Button type="submit" variant="outline-warning" style={{ marginBottom: '30px' }}>{commentObj.id ? 'Update' : 'Post'} Your Comment</Button>
+        <Button type="submit" variant="outline-warning" style={{ marginBottom: '30px' }}>{postId ? 'Update' : 'Post'} Your Comment</Button>
       </div>
     </Form>
   );
@@ -79,14 +85,14 @@ CommentForm.propTypes = {
     id: PropTypes.number,
   }),
   postId: PropTypes.number,
-  userId: PropTypes.number,
+  // userId: PropTypes.number,
 
 };
 
 CommentForm.defaultProps = {
   commentObj: initialState,
   postId: PropTypes.number,
-  userId: PropTypes.number,
+  // userId: PropTypes.number,
 };
 
 export default CommentForm;

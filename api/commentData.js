@@ -60,13 +60,13 @@ const updateComment = (commentId) => new Promise((resolve, reject) => {
 });
 
 const getPostsComments = (postId) => new Promise((resolve, reject) => {
-  fetch(`https://localhost:7284/api/Comments/${postId}"`, {
+  fetch(`https://localhost:7284/api/CommentsbypostID/${postId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   })
-    // .then((response) => response.json())
+    .then((response) => response.json())
     .then((data) => resolve(Object.values(data)))
     .catch(reject);
 });

@@ -1,6 +1,4 @@
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
 import { getAllComments } from '../api/commentData';
 import CommentCard from '../components/CommentCard';
 
@@ -27,9 +25,6 @@ function CommentPage() {
         }}
       >
         <h1>All Comments</h1>
-        <Link href="/newComment" passHref>
-          <Button> Add A Comment</Button>
-        </Link>
 
       </div>
       <div className="d-flex justify-content-between">
