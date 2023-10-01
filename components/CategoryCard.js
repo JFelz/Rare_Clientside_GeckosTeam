@@ -6,7 +6,6 @@ import { Button } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import { deleteCategory, getSingleCategory } from '../api/categoryData';
 import CategoryForm from './forms/CategoryForm';
-// import { getPostsByCategory } from '../api/postData';
 
 function CategoryCard({ categoryObj }) {
   const router = useRouter();
@@ -23,7 +22,6 @@ function CategoryCard({ categoryObj }) {
   };
 
   const viewCategoryPosts = () => {
-    console.log('categoryId', categoryObj.categoryId);
     router.push(`/categoryPosts/${categoryObj?.id}`);
   };
 
