@@ -16,7 +16,6 @@ export default function ReactionCard({ Obj, postObj }) {
   const [singlePost, setSinglePost] = useState([]);
   const [singleUser, setSingleUser] = useState();
   const [postReaction, setPostReaction] = useState();
-  const [showCurrentCount, setShowCurrentCount] = useState([]);
   const { user } = useAuth();
 
   function getUserId() {
@@ -45,9 +44,6 @@ export default function ReactionCard({ Obj, postObj }) {
       putOrPostReactions();
     }
     // Disable reaction count below this line
-    if (postObj.id) {
-      getIdCount(singlePost).then(setShowCurrentCount);
-    }
   };
 
   useEffect(() => {
@@ -75,12 +71,8 @@ export default function ReactionCard({ Obj, postObj }) {
               objectFit: 'cover',
               borderRadius: '100%',
             }}
-            {...showCurrentCount.length}
           />
         </button>
-        <h1>
-          {showCurrentCount.length}
-        </h1>
       </div>
     </>
   );
