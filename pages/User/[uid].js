@@ -1,21 +1,24 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { Button, Image } from 'react-bootstrap';
-import { useAuth } from '../utils/context/authContext';
-import UserPosts from '../components/UserPosts';
-import { getSingleUser } from '../api/userData';
+import { useRouter } from 'next/router';
+import { useAuth } from '../../utils/context/authContext';
+import UserPosts from '../../components/UserPosts';
+import { getSingleUser } from '../../api/userData';
 
 export default function UserProfile() {
-  const [userObj, setProfileUser] = useState();
+  const [userObj, setUserObj] = useState();
+  const router = useRouter();
   const { user } = useAuth();
-
-  const getUser = () => {
-    getSingleUser(user.uid).then(setProfileUser);
-  };
+  const { uid } = router.query;
 
   useEffect(() => {
-    getUser();
-  }, []);
+    getSingleUser(uid).then((details) => {
+      if (details) {
+        setUserObj(details);
+      }
+    });
+  });
 
   return (
     <>
