@@ -28,7 +28,7 @@ function PostCard({ postObj }) {
   };
 
   const viewPostDetails = () => {
-    console.log('Navigating to post details for post ID:', singlePost?.post?.id);
+    // console.log('Navigating to post details for post ID:', singlePost?.post?.id);
     router.push(`/${singlePost?.id}`);
   };
 

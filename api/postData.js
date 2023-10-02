@@ -60,6 +60,18 @@ const allCategories = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getPostsByCategory = (categoryId) => new Promise((resolve, reject) => {
+  fetch(`https://localhost:7284/api/posts?categoryId=${categoryId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 const findUser = (uid) => new Promise((resolve, reject) => {
   fetch(`https://localhost:7284/checkuser/${uid}/`, {
     method: 'GET',
@@ -92,4 +104,5 @@ export {
   allCategories,
   findUser,
   deleteSinglePost,
+  getPostsByCategory,
 };
