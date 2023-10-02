@@ -148,7 +148,7 @@ export default function PostForm({ postObj }) {
             </FloatingLabel>
 
             {/* Tag Select  */}
-            <FloatingLabel controlId="floatingInput1" label="Tag" className="mb-3" style={{ color: 'red' }}>
+            <FloatingLabel controlId="floatingInput2" label="Tag" className="mb-3" style={{ color: 'red' }}>
               <Form.Select
                 type="text"
                 placeholder="Select Tag"

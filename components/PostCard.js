@@ -23,7 +23,7 @@ function PostCard({ postObj }) {
 
   const deletePost = () => {
     if (window.confirm('Delete this Post?')) {
-      deleteSinglePost(singlePost?.post?.id).then(() => router.push('/posts'));
+      deleteSinglePost(singlePost?.id).then(() => router.push('/posts'));
     }
   };
 
@@ -32,7 +32,7 @@ function PostCard({ postObj }) {
     router.push(`/${singlePost?.id}`);
   };
 
-  // console.log('this is the post obj:', postObj);
+  console.log('this is the post obj:', postObj);
   console.log('this is the single post:', singlePost);
 
   return (
