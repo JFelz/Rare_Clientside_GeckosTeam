@@ -14,6 +14,7 @@ function PostCard({ postObj }) {
 
   const getReactions = () => {
     getAllreactions().then(setReactObj);
+    console.log('From getReactions:', reactObj);
   };
 
   useEffect(() => {
