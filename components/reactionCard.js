@@ -44,7 +44,7 @@ export default function ReactionCard({ Obj, postObj }) {
     }
   };
 
-  console.log('This is the singleReact:', singleReact);
+  // console.log('This is the singleReact:', singleReact);
 
   return (
     <>

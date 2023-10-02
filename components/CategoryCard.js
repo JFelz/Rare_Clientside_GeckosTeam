@@ -20,6 +20,11 @@ function CategoryCard({ categoryObj }) {
       deleteCategory(categoryObj.id).then(() => router.push('/categories'));
     }
   };
+
+  const viewCategoryPosts = () => {
+    router.push(`/categoryPosts/${categoryObj?.id}`);
+  };
+
   return (
 
     <Card style={{ width: '15rem' }}>
@@ -27,6 +32,7 @@ function CategoryCard({ categoryObj }) {
       <Card.Title>{categoryObj?.label}</Card.Title>
       <CategoryForm categoryObj={singleCategory} />
       <Button variant="danger" onClick={deleteACategory}>Delete</Button>
+      <Button variant="primary" onClick={viewCategoryPosts}>View Posts</Button>
     </Card>
   );
 }

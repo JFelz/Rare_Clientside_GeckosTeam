@@ -52,7 +52,7 @@ export default function PostForm({ postObj }) {
   // console.log('these are the categories:', categories);
   // console.log('this is the checkUser:', checkUser);
   // console.log('this is the checkUserID:', checkUser?.[0]?.id);
-  console.log('all tags:', tagz);
+  // console.log('all tags:', tagz);
 
   const handleClose = () => {
     setShow(false);

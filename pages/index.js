@@ -4,6 +4,8 @@ import { Button } from 'react-bootstrap';
 import { getSingleUser } from '../api/userData';
 import { signOut } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
+// import { getSubscribedPosts } from '../api/categoryData';
+// import PostCard from '../components/PostCard';
 
 function Home() {
   const [blurButton, setBlurButton] = useState();
